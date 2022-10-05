@@ -109,11 +109,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Reece Gaddie\\source\\repos\\Rock Paper Scissors\\Rock Paper Scissors\\Rock Paper Scissors.csproj",
+      "projectUniqueName": "C:\\Users\\Reece Gaddie\\source\\repos\\RockPaperScissors\\Rock Paper Scissors\\Rock Paper Scissors.csproj",
       "projectName": "Rock Paper Scissors",
-      "projectPath": "C:\\Users\\Reece Gaddie\\source\\repos\\Rock Paper Scissors\\Rock Paper Scissors\\Rock Paper Scissors.csproj",
+      "projectPath": "C:\\Users\\Reece Gaddie\\source\\repos\\RockPaperScissors\\Rock Paper Scissors\\Rock Paper Scissors.csproj",
       "packagesPath": "C:\\Users\\Reece Gaddie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Reece Gaddie\\source\\repos\\Rock Paper Scissors\\Rock Paper Scissors\\obj\\",
+      "outputPath": "C:\\Users\\Reece Gaddie\\source\\repos\\RockPaperScissors\\Rock Paper Scissors\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
