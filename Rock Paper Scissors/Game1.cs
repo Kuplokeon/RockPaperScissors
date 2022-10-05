@@ -73,19 +73,37 @@ namespace Rock_Paper_Scissors
         {
             instance = this;
 
+            soldiers.Clear();
+
             for (int i = 0; i < 100; i++)
             {
-                Soldier newSoldier = new Soldier();
-
-                newSoldier.soldierClass = (SoldierClass)random.Next(0, 3);
-                //place in random position on screen
-                newSoldier.position = new Point(
-                    random.Next(0, (int)screenSize.X),
-                    random.Next(0, (int)screenSize.Y));
-
-                soldiers.Add(newSoldier);
+                CreateNewSoldier();
             }
         }
+
+        public Soldier CreateNewSoldier()
+        {
+            return CreateNewSoldier((SoldierClass)random.Next(0, 3));
+        }
+
+        public Soldier CreateNewSoldier(SoldierClass soldierClass)
+        {
+            Soldier newSoldier = new Soldier();
+
+            newSoldier.soldierClass = soldierClass;
+            //place in random position on screen
+            newSoldier.position = new Point(
+                random.Next(0, (int)screenSize.X),
+                random.Next(0, (int)screenSize.Y));
+
+            soldiers.Add(newSoldier);
+
+            return newSoldier;
+        }
+
+        public int globalSpeed;
+
+        public bool autoReset = false;
 
         protected override void Update(GameTime gameTime)
         {
@@ -98,6 +116,85 @@ namespace Rock_Paper_Scissors
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+            {
+                globalSpeed = 5;
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                {
+                    globalSpeed = 25;
+                    if (Keyboard.GetState().IsKeyDown(Keys.LeftControl))
+                    {
+                        globalSpeed = 250;
+                    }
+                }
+            } else
+            {
+                globalSpeed = 1;
+            }
+
+            #region controls
+            if (Keyboard.GetState().IsKeyDown(Keys.F5))
+            {
+                Start();
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                CreateNewSoldier();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                CreateNewSoldier(SoldierClass.Rock);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                CreateNewSoldier(SoldierClass.Paper);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                CreateNewSoldier(SoldierClass.Scissors);
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.F1))
+            {
+                autoReset = true;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.F2))
+            {
+                autoReset = false;
+            }
+
+            if (autoReset)
+            {
+                bool timeToReset = false;
+                if (GetSoldierOfClass(SoldierClass.Rock).Count == soldiers.Count)
+                {
+                    timeToReset = true;
+                }  if (GetSoldierOfClass(SoldierClass.Paper).Count == soldiers.Count)
+                {
+                    timeToReset = true;
+                }  if (GetSoldierOfClass(SoldierClass.Scissors).Count == soldiers.Count)
+                {
+                    timeToReset = true;
+                }
+                if (timeToReset)
+                {
+                    Start();
+                }
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Z))
+            {
+                soldiers.Clear();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.X) && soldiers.Count == 0)
+            {
+                CreateNewSoldier(SoldierClass.Rock);
+                CreateNewSoldier(SoldierClass.Paper);
+                CreateNewSoldier(SoldierClass.Scissors);
+            }
+            #endregion
+
             // TODO: Add your update logic here
             foreach (Soldier soldier in soldiers)
             {
@@ -105,6 +202,19 @@ namespace Rock_Paper_Scissors
             }
 
             base.Update(gameTime);
+        }
+
+        public List<Soldier> GetSoldierOfClass(SoldierClass soldierClassToCheck)
+        {
+            List<Soldier> output = new List<Soldier>();
+            foreach (Soldier i in Game1.instance.soldiers)
+            {
+                if (i.soldierClass == soldierClassToCheck)
+                {
+                    output.Add(i);
+                }
+            }
+            return output;
         }
 
         protected override void Draw(GameTime gameTime)

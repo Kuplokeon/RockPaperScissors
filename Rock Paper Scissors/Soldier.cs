@@ -48,23 +48,24 @@ namespace Rock_Paper_Scissors
         #region Movement
         public void Move()
         {
+            int globalSpeed = Game1.instance.globalSpeed;
 
             //move away from random enemy
-            MoveAwayFromTarget(GetRandomSoldier(GetPredators()));
+            MoveAwayFromTarget(GetRandomSoldier(GetPredators()), globalSpeed);
 
             //move away from closest enemy
-            MoveAwayFromTarget(GetClosestSoldier(GetPredators()), 2);
+            MoveAwayFromTarget(GetClosestSoldier(GetPredators()), globalSpeed);
 
 
             //move towards random friend
-            MoveAwayFromTarget(GetRandomSoldier(GetFriends()));
+            MoveAwayFromTarget(GetRandomSoldier(GetFriends()), globalSpeed);
 
 
             //move towards random target
-            MoveTowardTarget(GetRandomSoldier(GetPrey()));
+            MoveTowardTarget(GetRandomSoldier(GetPrey()), globalSpeed);
 
             //move towards closest target
-            MoveTowardTarget(GetClosestSoldier(GetPrey()), 2);
+            MoveTowardTarget(GetClosestSoldier(GetPrey()), 2 * globalSpeed);
 
 
             MoveAboutCenter();
@@ -131,12 +132,12 @@ namespace Rock_Paper_Scissors
             if (dist < innerRing)
             {
                 Console.WriteLine("Move away");
-                MoveAwayFromTarget(centerPoint);
+                MoveAwayFromTarget(centerPoint, Game1.instance.globalSpeed);
             }
             else if (dist > outerRing)
             {
                 Console.WriteLine("Move in");
-                MoveTowardTarget(centerPoint, (int)dist / (int)(outerRing));
+                MoveTowardTarget(centerPoint, ((int)dist / (int)(outerRing / 2)) * Game1.instance.globalSpeed);
             }
         }
 
