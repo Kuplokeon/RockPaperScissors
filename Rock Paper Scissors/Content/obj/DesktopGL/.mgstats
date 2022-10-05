@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Reece Gaddie/source/repos/Rock Paper Scissors/Rock Paper Scissors/Content/images/paper.png","C:/Users/Reece Gaddie/source/repos/Rock Paper Scissors/Rock Paper Scissors/Content/bin/DesktopGL/images/paper.xnb","TextureProcessor","Texture2DContent",9465,4000085,0.2393252
+"C:/Users/Reece Gaddie/source/repos/Rock Paper Scissors/Rock Paper Scissors/Content/images/rock.png","C:/Users/Reece Gaddie/source/repos/Rock Paper Scissors/Rock Paper Scissors/Content/bin/DesktopGL/images/rock.xnb","TextureProcessor","Texture2DContent",8675,4000085,0.0730719
+"C:/Users/Reece Gaddie/source/repos/Rock Paper Scissors/Rock Paper Scissors/Content/images/scissors.png","C:/Users/Reece Gaddie/source/repos/Rock Paper Scissors/Rock Paper Scissors/Content/bin/DesktopGL/images/scissors.xnb","TextureProcessor","Texture2DContent",9635,4000085,0.0727736
